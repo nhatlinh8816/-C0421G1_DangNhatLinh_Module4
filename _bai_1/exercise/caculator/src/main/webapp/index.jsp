@@ -18,6 +18,5 @@
     <input type="number" name="USD" value="USD">
     <button type="submit">Convert</button>
   </form>
-
   </body>
 </html>
