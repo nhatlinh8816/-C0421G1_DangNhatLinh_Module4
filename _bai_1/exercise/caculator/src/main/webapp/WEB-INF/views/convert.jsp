@@ -8,11 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Result</title>
 </head>
 <body>
-    <h2> tỷ giá USD/VND hôm nay: 23000</h2>
-    <h2>Số USD: ${valueToVND}</h2>
-    <h2>Số tiền quy đổi sang VND: ${valueToVND*23000}</h2>
+    <h2>Số tiền quy đổi sang VND: ${result}</h2>
 </body>
 </html>

@@ -11,6 +11,13 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <form action="/calculator">
+    <h2>Nhập tỷ giá</h2>
+    <input type="number" name="ty-gia" value="ty-gia">
+    <h2>Nhập USD</h2>
+    <input type="number" name="USD" value="USD">
+    <button type="submit">Convert</button>
+  </form>
+
   </body>
 </html>
