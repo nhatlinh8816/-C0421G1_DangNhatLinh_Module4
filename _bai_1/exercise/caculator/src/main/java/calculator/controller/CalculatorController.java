@@ -16,7 +16,7 @@ public class CalculatorController {
     @Autowired
     CalculatorService calculatorService;
     @RequestMapping(value = "/calculator")
-    public String getConvertPage(HttpServletRequest request, Model model){
+    private String getConvertPage(HttpServletRequest request, Model model){
         double tyGia =Double.parseDouble(request.getParameter("ty-gia"));
         double usd = Double.parseDouble(request.getParameter("USD"));
         double result = calculatorService.convert(usd,tyGia);
