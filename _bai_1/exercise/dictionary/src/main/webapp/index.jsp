@@ -13,7 +13,7 @@
   <body>
   <form action="/dictionary">
     <h2>Nhập từ muốn dịch</h2>
-    <input type="text" name="english">
+    <input type="text" name="vietnamese">
     <button type="submit">Translate</button>
   </form>
   </body>
