@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CalculatorController {
     @Autowired
-    CalculatorService calculatorService;
+    private CalculatorService calculatorService;
     @RequestMapping(value = "/")
     private ModelAndView getHomepage(){
         return new ModelAndView("homepage");

@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class CondimentController {
     @Autowired
-    CondimentService condimentService;
+    private CondimentService condimentService;
     @RequestMapping(value = "/")
     private String getHomepage(){
         return "homepage";
