@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+<form action="/product/searchByName" method="post">
+    <p>Search by Name</p>
+    <input type="text" name="productName">
+    <input type="submit" value="Search">
+</form>
+<p th:if="${productList.isEmpty() }">List Empty</p>
+<div th:if="${not productList.isEmpty() }">
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Producer</th>
+        <th colspan="3">Action</th>
+    </tr>
+    <tr th:each="productObj: ${productList}">
+        <td th:text="${productObj.id} "></td>
+        <td th:text="${productObj.name}"></td>
+        <td th:text="${productObj.price}"></td>
+        <td th:text="${productObj.description}"></td>
+        <td th:text="${productObj.producer}"></td>
+        <td>
+            <a th:href="@{/product/edit/__${productObj.id}__}" >Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/product/delete/__${productObj.id}__}">Delete</a>
+        </td>
+        <td>
+            <a th:href="@{/product/detail/__${productObj.id}__}">Detail</a>
+        </td>
+    </tr>
+</table>
+</div>
+<a th:href="@{/product/create}"> Create new Product</a>
+</body>
+</html>
