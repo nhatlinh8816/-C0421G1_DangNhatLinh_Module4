@@ -8,12 +8,6 @@
 <form th:object="${newProduct}" action="/product/create" method="post">
     <table>
         <tr>
-            <td>ID</td>
-            <td>
-                <input th:field="*{id}">
-            </td>
-        </tr>
-        <tr>
             <td>Name</td>
             <td>
                 <input th:field="*{name}">

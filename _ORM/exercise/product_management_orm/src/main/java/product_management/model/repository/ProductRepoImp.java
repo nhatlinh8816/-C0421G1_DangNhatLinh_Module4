@@ -71,7 +71,7 @@ public class ProductRepoImp implements ProductRepo {
             product.setPrice(editProduct.getPrice());
             product.setDescription(editProduct.getDescription());
             product.setProducer(editProduct.getProducer());
-            session.saveOrUpdate(product);
+            session.update(product);
             transaction.commit();
 
         }catch (Exception e){
