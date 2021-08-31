@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class ProductServiceImp implements ProductService {
     @Autowired
-    ProductRepo productRepo;
+    private ProductRepo productRepo;
     @Override
     public List<Product> viewAll() {
         return productRepo.viewAll();

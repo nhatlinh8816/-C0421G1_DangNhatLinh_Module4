@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+<form action="/category/list" method="post">
+    <p>Search by Name</p>
+    <input type="text" name="categoryName">
+    <input type="submit" value="Search">
+</form>
+<p th:if="${categoryList.isEmpty() }">List Empty</p>
+<div th:if="${not categoryList.isEmpty() }">
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th colspan="3">Action</th>
+        </tr>
+        <tr th:each="categoryObj: ${categoryList}">
+            <td th:text="${categoryObj.id} "></td>
+            <td th:text="${categoryObj.name}"></td>
+            <td>
+                <a th:href="@{/category/edit/__${categoryObj.id}__}" >Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/category/delete/__${categoryObj.id}__}">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{/category/detail/__${categoryObj.id}__}">Detail</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <a th:href="@{'/category/list'(page=${categoryList.number - 1})}" th:if="${categoryList.hasPrevious()}">Previous</a>
+</div>
+<div>
+    <span th:text="${categoryList.number + 1}"></span>/<span th:text="${categoryList.getTotalPages()}"></span>
+</div>
+
+<div>
+    <a th:href="@{'/category/list'(page=${categoryList.number + 1})}" th:if="${categoryList.hasNext()}">Next</a>
+</div>
+
+<div>
+    <a th:href="@{/category/create}"> Create new Category</a>
+</div>
+
+<div>
+    <a th:href="@{/blog/list}"> Go to blog list</a>
+</div>
+</body>
+</html>

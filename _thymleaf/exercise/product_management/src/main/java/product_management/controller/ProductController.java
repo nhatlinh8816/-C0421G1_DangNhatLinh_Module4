@@ -20,7 +20,7 @@ public class ProductController {
     @RequestMapping(value = "/create")
     public ModelAndView showCreateForm(Model model){
         //gửi 1 đối tượng rỗng cho người dùng thêm
-        model.addAttribute("newProduct",new Product());
+//        model.addAttribute("newProduct",new Product());
         return new ModelAndView("create","newProduct",new Product());
 
     }

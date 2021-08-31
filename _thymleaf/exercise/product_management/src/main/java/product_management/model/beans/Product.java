@@ -1,15 +1,6 @@
 package product_management.model.beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-//thông báo cho hibernate class Product là 1 thực thể
 public class Product {
-    @Id //thông báo id là khóa chính
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //id tự tăng theo thứ tự
     private int id;
     private String name;
     private double price;
