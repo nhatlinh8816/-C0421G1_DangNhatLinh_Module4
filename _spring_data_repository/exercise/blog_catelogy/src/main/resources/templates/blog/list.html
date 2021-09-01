@@ -5,9 +5,9 @@
     <title>List</title>
 </head>
 <body>
-<form action="/blog/list" method="post">
+<form action="/blog/searchByDes" method="post">
     <p>Search by Name</p>
-    <input type="text" name="blogName">
+    <input type="text" name="blogDes">
     <input type="submit" value="Search">
 </form>
 <p th:if="${blogList.isEmpty() }">List Empty</p>

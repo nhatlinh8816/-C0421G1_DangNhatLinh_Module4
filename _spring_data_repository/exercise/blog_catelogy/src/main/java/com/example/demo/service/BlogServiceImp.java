@@ -39,5 +39,10 @@ public class BlogServiceImp implements BlogService {
         blogRepo.delete(blog);
     }
 
+    @Override
+    public Page<Blog> findByDescription(String name,Pageable pageable) {
+        return blogRepo.findByDescription(name,pageable);
+    }
+
 
 }

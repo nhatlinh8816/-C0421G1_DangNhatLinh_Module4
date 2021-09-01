@@ -13,5 +13,7 @@ public interface BlogService {
     void save(Blog blog);
     Blog findById(int id);
     void remove(Blog blog);
+    Page<Blog> findByDescription(String name,Pageable pageable);
+
 
 }

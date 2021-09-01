@@ -10,10 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -79,5 +76,9 @@ public class BlogController {
         editBlog.setDateCreate(new Date(System.currentTimeMillis()));
         blogService.save(editBlog);
         return new ModelAndView("redirect:/blog/list");
+    }
+    @PostMapping(value = "/searchByDes")
+    public ModelAndView showListByDes(@RequestParam("blogDes") String des, @PageableDefault(value = 2)Pageable pageable){
+        return new ModelAndView("blog/list","blogList",blogService.findByDescription(des, pageable));
     }
 }
