@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<form action=""></form>
+<p th:if="${userList.isEmpty() }">User List is Empty</p>
+<div th:if="${not userList.isEmpty()}">
+    <table border="1">
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last name</th>
+        <th>Phone number</th>
+        <th>Age</th>
+        <th>Email</th>
+    </tr>
+    <tr th:each="user: ${userList}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.phoneNumber}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.email}"></td>
+    </tr>
+    </table>
+</div>
+<div>
+    <a th:href="@{'/user/list'(page=${userList.number - 1})}" th:if="${userList.hasPrevious()}">Previous</a>
+</div>
+<div>
+    <span th:text="${userList.number + 1}"></span>/<span th:text="${userList.getTotalPages()}"></span>
+</div>
+<div>
+    <a th:href="@{'/user/list'(page=${userList.number + 1})}" th:if="${userList.hasNext()}">Next</a>
+</div>
+<div>
+    <a th:href="@{/user/create}"> Create new User</a>
+</div>
+
+</body>
+</html>
