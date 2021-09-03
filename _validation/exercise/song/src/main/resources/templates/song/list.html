@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Song</title>
+</head>
+<body>
+<p th:if="${songList.isEmpty() }">List of Song is Empty</p>
+<div th:if="${not songList.isEmpty()}">
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Singer name</th>
+            <th>Category</th>
+        </tr>
+        <tr th:each="song: ${songList}">
+            <td th:text="${song.id}"></td>
+            <td th:text="${song.name}"></td>
+            <td th:text="${song.singer}"></td>
+            <td th:text="${song.category}"></td>
+
+        </tr>
+    </table>
+</div>
+<div>
+    <a th:href="@{'/song/list'(page=${songList.number - 1})}" th:if="${songList.hasPrevious()}">Previous</a>
+</div>
+<div>
+    <span th:text="${songList.number + 1}"></span>/<span th:text="${songList.getTotalPages()}"></span>
+</div>
+<div>
+    <a th:href="@{'/song/list'(page=${songList.number + 1})}" th:if="${songList.hasNext()}">Next</a>
+</div>
+<div>
+    <a th:href="@{/song/create}"> Create new Song</a>
+</div>
+</body>
+</html>

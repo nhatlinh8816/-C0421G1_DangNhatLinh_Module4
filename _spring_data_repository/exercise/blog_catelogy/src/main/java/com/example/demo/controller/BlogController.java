@@ -25,13 +25,13 @@ public class BlogController {
     @Autowired
     private CategoryService categoryService;
     @RequestMapping(value = "/list")
-    public ModelAndView showList(@PageableDefault(value = 2)Pageable pageable){
+    public ModelAndView showList(@PageableDefault(value = 2,sort = "dateCreate",direction = Sort.Direction.ASC)Pageable pageable){
         return new ModelAndView("blog/list","blogList",blogService.findAll(pageable));
     }
-    @RequestMapping(value = "/list/sort")
-    public ModelAndView showListByDateCreate(@PageableDefault(value = 2,sort = "dateCreate",direction = Sort.Direction.ASC)Pageable pageable){
-        return new ModelAndView("blog/list","blogList",blogService.findAll(pageable));
-    }
+//    @RequestMapping(value = "/list/sort")
+//    public ModelAndView showListByDateCreate(@PageableDefault(value = 2,sort = "dateCreate",direction = Sort.Direction.ASC)Pageable pageable){
+//        return new ModelAndView("blog/list","blogList",blogService.findAll(pageable));
+//    }
     @RequestMapping(value = "/create")
     public String showCreateForm(Model model){
         List<Category> categoryList = categoryService.findAll();
