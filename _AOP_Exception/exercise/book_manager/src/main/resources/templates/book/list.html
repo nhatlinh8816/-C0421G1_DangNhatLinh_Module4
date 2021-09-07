@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+</head>
+<body>
+<p th:if="${bookList.isEmpty()}">List Empty</p>
+<div th:if="${not bookList.isEmpty() }">
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th colspan="2">Action</th>
+        </tr>
+        <tr th:each="bookObj: ${bookList}">
+            <td th:text="${bookObj.id} "></td>
+            <td th:text="${bookObj.name}"></td>
+            <td th:text="${bookObj.amount}"></td>
+            <td>
+                <a th:href="@{/book/borrow/__${bookObj.id}__}" >BORROW BOOK</a>
+            </td>
+            <td>
+                <a th:href="@{/book/give/__${bookObj.id}__}">GIVE BOOK</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <a th:href="@{'/book/list'(page=${bookList.number - 1})}" th:if="${bookList.hasPrevious()}">Previous</a>
+</div>
+<div>
+    <span th:text="${bookList.number + 1}"></span>/<span th:text="${bookList.getTotalPages()}"></span>
+</div>
+
+<div>
+    <a th:href="@{'/book/list'(page=${bookList.number + 1})}" th:if="${bookList.hasNext()}">Next</a>
+</div>
+
+<div>
+    <a th:href="@{/book/create}"> Create new Book</a>
+</div>
+
+</body>
+</html>

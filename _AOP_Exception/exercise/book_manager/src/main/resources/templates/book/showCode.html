@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Code</title>
+</head>
+<body>
+<h2>BORROW BOOK SUCCESSFULLY</h2>
+<h2>YOUR CODE IS: </h2>
+<h3 th:text="${newCode.code}" ></h3>
+<h3>please remember this code</h3>
+<a th:href="@{/book/list}">Return to book list</a>
+</body>
+</html>
