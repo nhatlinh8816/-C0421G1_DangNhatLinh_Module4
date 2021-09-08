@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Amount</td>
+        <td colspan="2">Action</td>
+        <td>Payment</td>
+    </tr>
+    <th:block th:each="productOnCart:${cart.productMap}">
+        <tr>
+<!--             produt trong cart dang o dang entry => phai .key.thuoctinh-->
+            <td th:text="${productOnCart.key.name}"></td>
+            <td th:text="${productOnCart.key.price}"></td>
+<!--            <td th:text="${productOnCart.value}"></td>-->
+            <td>
+                <a id="decrease_button" th:text="${'-'}" th:href="@{/shop/edit/__${productOnCart.key.id}__(action='remove')}">
+                </a>
+                <span th:text="${productOnCart.value}"></span>
+                <a id="increase_button" th:href="@{/shop/edit/__${productOnCart.key.id}__(action='add')}"
+                   th:text="${'+'}">
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/shop/delete/__${productOnCart.key.id}__}">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{/shop/detail/__${productOnCart.key.id}__}">Detail</a>
+            </td>
+            <td th:text="${productOnCart.key.price}*${productOnCart.value}"></td>
+        </tr>
+
+    </th:block>
+    <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td colspan="2"></td>
+        <td th:text="${cart.countTotalPayment()}"></td>
+    </tr>
+</table>
+<a th:href="@{/shop}">Return to Shop</a>
+</body>
+</html>
