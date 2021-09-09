@@ -36,8 +36,11 @@ public class ProductController {
             ProductDto productDto = new ProductDto();
             BeanUtils.copyProperties(productService.findById(id).get(),productDto);
             cart.addProduct(productDto);
+            return new ModelAndView("redirect:/shop");
+        }else {
+            return new ModelAndView("/product/error");
         }
-        return new ModelAndView("redirect:/shop");
+
     }
     @RequestMapping(value = "/delete/{id}")
     public ModelAndView deleteToCart(@PathVariable int id, @SessionAttribute CartDto cart) {
@@ -46,8 +49,10 @@ public class ProductController {
             ProductDto productDto = new ProductDto();
             BeanUtils.copyProperties(productService.findById(id).get(),productDto);
             cart.deleteProductOnCart(productDto);
+            return new ModelAndView("redirect:/cart/list");
+        }else {
+            return new ModelAndView("/product/error");
         }
-        return new ModelAndView("redirect:/cart/list");
     }
 
     @RequestMapping(value ="/detail/{id}")
@@ -55,8 +60,9 @@ public class ProductController {
         Optional<Product> productOptional = productService.findById(id);
         if (productOptional.isPresent()){
             return new ModelAndView("/product/detail","product", productOptional.get());
+        }else {
+            return new ModelAndView("/product/error");
         }
-        return new ModelAndView("redirect:/shop");
     }
 
     @RequestMapping(value = "/remove/{id}")
@@ -66,8 +72,10 @@ public class ProductController {
             ProductDto productDto = new ProductDto();
             BeanUtils.copyProperties(productService.findById(id).get(),productDto);
             cart.removeProduct(productDto);
+            return new ModelAndView("redirect:/cart/list");
+        }else {
+            return new ModelAndView("/product/error");
         }
-        return new ModelAndView("redirect:/shop");
     }
 
     @RequestMapping(value = "/edit/{id}")
@@ -85,5 +93,10 @@ public class ProductController {
             return new ModelAndView("redirect:/cart/list");
         }
         return new ModelAndView("redirect:/shop");
+    }
+    @RequestMapping(value = "/payment")
+    public ModelAndView payment(@SessionAttribute CartDto cart){
+        cart.removeAllProductOnCart();
+        return new ModelAndView("redirect:/cart/list");
     }
 }

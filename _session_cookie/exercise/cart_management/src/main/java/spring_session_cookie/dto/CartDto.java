@@ -45,6 +45,9 @@ public class CartDto {
         }
         return payment;
     }
+    public void removeAllProductOnCart(){
+        productMap.clear();
+    }
 
 
 }
