@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input type="text" id="inputSearch" autocomplete="off">
+</div>
+<div>
+    <table>
+        <tr>
+            <td>Id</td>
+            <td>Description</td>
+            <td>Content</td>
+            <td>Category</td>
+        </tr>
+    </table>
+</div>
+<div>
+ <button>Load more</button>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url:"http://localhost:8080/blog/api/listPage",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                let tr = [];
+                for (let i =0;i<data.content.length;i++){
+                    tr.push('<tr>');
+                    tr.push('<td>'+data.content[i].id+'</td>');
+                    tr.push('<td>'+data.content[i].description+'</td>');
+                    tr.push('<td>'+data.content[i].content+'</td>');
+                    tr.push('<td>'+data.content[i].category.name+'</td>');
+                    tr.push('</tr>');
+                }
+                $('table').append($(tr.join('')));
+            }
+        })
+        let page = 0;
+        $("button").click(function () {
+            page ++;
+            $('table').empty()
+            $.ajax({
+                url:"http://localhost:8080/blog/api/listPage?page="+page,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let tr = [];
+                    for (let i =0;i<data.content.length;i++){
+                        tr.push('<tr>');
+                        tr.push('<td>'+data.content[i].id+'</td>');
+                        tr.push('<td>'+data.content[i].description+'</td>');
+                        tr.push('<td>'+data.content[i].content+'</td>');
+                        tr.push('<td>'+data.content[i].category.name+'</td>');
+                        tr.push('</tr>');
+                    }
+                    $('table').append($(tr.join('')));
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>
