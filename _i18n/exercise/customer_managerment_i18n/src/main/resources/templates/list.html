@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="#{message.title}"></h1>
+<p th:if="${customerList.isEmpty() }">List Empty</p>
+<div th:if="${not customerList.isEmpty() }">
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+
+        </tr>
+        <tr th:each="customerObj:${customerList}">
+            <td th:text="${customerObj.id} "></td>
+            <td th:text="${customerObj.name}"></td>
+            <td th:text="${customerObj.age}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
