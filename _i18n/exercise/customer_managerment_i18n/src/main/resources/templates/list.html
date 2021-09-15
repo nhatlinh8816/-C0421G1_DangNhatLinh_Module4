@@ -10,9 +10,9 @@
 <div th:if="${not customerList.isEmpty() }">
     <table border="1">
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Age</th>
+            <th th:text="#{message.header1}"></th>
+            <th th:text="#{message.header2}"></th>
+            <th th:text="#{message.header3}"></th>
 
         </tr>
         <tr th:each="customerObj:${customerList}">

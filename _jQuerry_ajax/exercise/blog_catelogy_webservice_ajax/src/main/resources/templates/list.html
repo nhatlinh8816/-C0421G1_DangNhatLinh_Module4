@@ -62,32 +62,6 @@
                 }
             })
         })
-        $("button").click(function () {
-            $.ajax({
-                url:"http://localhost:8080/blog/api/",
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    for (let i =1;i<data.length;i++){
-                        $.ajax({
-                            url:"http://localhost:8080/blog/api/detail/"+i,
-                            type: "GET",
-                            dataType: "json",
-                            success: function (data) {
-                                let tr = [];
-                                    tr.push('<tr>');
-                                    tr.push('<td>'+data.id+'</td>');
-                                    tr.push('<td>'+data.description+'</td>');
-                                    tr.push('<td>'+data.content+'</td>');
-                                    tr.push('<td>'+data.category.name+'</td>');
-                                    tr.push('</tr>');
-                                $('table').append($(tr.join('')));
-                            }
-                        })
-                    }
-                }
-            })
-        })
     })
 </script>
 </body>
