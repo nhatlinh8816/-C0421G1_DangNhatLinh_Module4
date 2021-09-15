@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Form</title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <h3> YOU ARE LOGGING WITH NAME: <span sec:authentication="principal.username"></span> </h3>
+</div>
+<form th:object="${newBlog}" action="/blog/create" method="post">
+    <table>
+        <tr>
+            <td>Description</td>
+            <td>
+                <input th:field="*{description}">
+            </td>
+        </tr>
+        <tr>
+            <td>Content</td>
+            <td>
+                <input th:field="*{content}">
+            </td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>
+                <select th:field="*{category.id}">
+                    <option th:each="item:${categoryList}" th:text="${item.name}" th:value="${item.id}">
+
+                    </option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>

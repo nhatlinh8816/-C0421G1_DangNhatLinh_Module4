@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <h3> YOU ARE LOGGING WITH NAME: <span sec:authentication="principal.username"></span> </h3>
+</div>
+<form action="/blog/searchByDes" method="post">
+    <p>Search by Name</p>
+    <input type="text" name="blogDes">
+    <input type="submit" value="Search">
+</form>
+<p th:if="${blogList.isEmpty() }">List Empty</p>
+<div th:if="${not blogList.isEmpty() }">
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Date create</th>
+            <th>Category</th>
+            <th colspan="3">Action</th>
+        </tr>
+        <tr th:each="blogObj: ${blogList}">
+            <td th:text="${blogObj.id} "></td>
+            <td th:text="${blogObj.description}"></td>
+            <td th:text="${blogObj.dateCreate}"></td>
+            <td th:text="${blogObj.category.name}"></td>
+            <td>
+                <a th:href="@{/blog/edit/__${blogObj.id}__}" >Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/blog/delete/__${blogObj.id}__}">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{/blog/detail/__${blogObj.id}__}">Detail</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <a th:href="@{'/blog/list'(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious()}">Previous</a>
+</div>
+<div>
+    <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.getTotalPages()}"></span>
+</div>
+
+<div>
+    <a th:href="@{'/blog/list'(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}">Next</a>
+</div>
+
+<div>
+    <a th:href="@{/blog/create}"> Create new Blog</a>
+</div>
+<!--<div>-->
+<!--    <a th:href="@{/blog/list/sort}"> Sort by Date create</a>-->
+<!--</div>-->
+<div>
+    <a th:href="@{/category/list}"> Go to category list</a>
+</div>
+
+</body>
+</html>
