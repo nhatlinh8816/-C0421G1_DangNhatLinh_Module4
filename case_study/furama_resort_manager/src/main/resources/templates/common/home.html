@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+    <div th:replace="~{/common/header::header}"></div>
+    <div th:replace="~{/common/navbar::navbar}"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div th:replace="~{/common/sidebar::sidebar}"></div>
+            <div th:replace="~{/common/body::body}"></div>
+        </div>
+    </div>
+    <div th:replace="~{/common/footer::footer}"></div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

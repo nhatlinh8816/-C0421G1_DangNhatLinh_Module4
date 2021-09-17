@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <link rel="stylesheet" href="/css/bootstrap.min.css">-->
+</head>
+<body>
+<div class="container-fluid" th:fragment="header">
+    <div class="row">
+        <div class="col-lg-10">
+            <img src="/image_libary/logo.jpg" width="80px" height="80px" alt="logo" >
+        </div>
+        <div class="col-lg-2" style="text-align: center" sec:authorize="isAnonymous()">
+            <form action="/login" method="post">
+                <input class="btn btn-primary" type="submit" value="Login">
+            </form>
+        </div>
+        <div class="col-lg-2  " style="text-align: center" sec:authorize="isAuthenticated()">
+            <form action="/login" method="post">
+                <h5> Hello, <span sec:authentication="principal.username"></span> <a th:href="@{/logout}">(Log out)</a> </h5>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<script src="/js/bootstrap.min.js"></script>-->
+</body>
+</html>
