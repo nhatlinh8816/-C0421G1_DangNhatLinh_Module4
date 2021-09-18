@@ -1,103 +1,121 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Employee Create Form</title>
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-<form th:object="${newEmployeeDto}" action="/employee/create" method="post">
-    <table>
-        <tr>
-            <td>Name</td>
-            <td>
-                <input type="text" th:field="*{name}" />
-            </td>
-            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
-        </tr>
-        <tr>
-            <td>Date Of Birth</td>
-            <td>
-                <input type="date" th:field="*{dOB}" />
-            </td>
-            <td th:if="${#fields.hasErrors('dOB')}" th:errors="*{dOB}"></td>
-        </tr>
-        <tr>
-            <td>Identity Number</td>
-            <td>
-                <input type="text" th:field="*{identityNumber}" />
-            </td>
-            <td th:if="${#fields.hasErrors('identityNumber')}" th:errors="*{identityNumber}"></td>
-        </tr>
-        <tr>
-            <td>Salary</td>
-            <td>
-                <input type="text" th:field="*{salary}" />
-            </td>
-        </tr>
-        <tr>
-            <td>Phone Number</td>
-            <td>
-                <input type="text" th:field="*{phoneNumber}" />
-            </td>
-            <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td>
-                <input type="text" th:field="*{email}" />
-            </td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td>
-                <input type="text" th:field="*{address}" />
-            </td>
-            <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></td>
-        </tr>
-        <tr>
-            <td>User Name</td>
-            <td>
-                <input type="text" th:field="*{user.account}" />
-            </td>
-            <td th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></td>
-        </tr>
-        <tr>
-            <td>Division</td>
-            <td>
-                <select th:field="*{division.id}">
+<!--<form action="/login" method="post">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>User Name</td>-->
+<!--            <td><input type="text" name="username"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Password</td>-->
+<!--            <td><input type="password" name="password"></td>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                Remember me-->
+<!--            </td>-->
+<!--        <td>-->
+<!--            <input type="checkbox" name="remember-me">-->
+<!--        </td>-->
+<!--        </tr>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td colspan="2">-->
+<!--                <button type="submit">Login</button>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+<div th:replace="~{/common/header::header}"></div>
+<div th:replace="~{/common/navbar::navbar}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{/common/sidebar::sidebar}"></div>
+        <div class="col-lg-10">
+            <div class="col-lg-12 text-center">
+                <h3>PLEASE INPUT INFORMATION</h3>
+            </div>
+        <form class="row g-3" th:object="${newEmployeeDto}" action="/employee/create" method="post">
+            <div class="col-md-6">
+                <label for="name" class="form-label">Name</label>
+                <input input type="text" th:field="*{name}" class="form-control" id="name">
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></td>
+            </div>
+            <div class="col-md-6">
+                <label for="dOb" class="form-label">Date Of Birth</label>
+                <input type="date" th:field="*{dOB}" class="form-control" id="dOb">
+                <td th:if="${#fields.hasErrors('dOB')}" th:errors="*{dOB}" class="text-danger"></td>
+            </div>
+            <div class="col-md-6">
+                <label for="idenNumber" class="form-label">Identity Number</label>
+                <input type="text" th:field="*{identityNumber}" class="form-control" id="idenNumber">
+                <td th:if="${#fields.hasErrors('identityNumber')}" th:errors="*{identityNumber}" class="text-danger"></td>
+            </div>
+            <div class="col-md-6">
+                <label for="salary" class="form-label">Salary</label>
+                <input type="text" th:field="*{salary}" class="form-control" id="salary">
+            </div>
+            <div class="col-md-6">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber">
+                <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></td>
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" th:field="*{email}" class="form-control" id="email">
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></td>
+            </div>
+            <div class="col-md-6">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" th:field="*{address}" class="form-control" id="address">
+                <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger"></td>
+            </div>
+            <div class="col-md-6">
+                <label for="user" class="form-label">Account</label>
+                <input type="text" th:field="*{user.account}" class="form-control" id="user">
+                <td th:if="${#fields.hasErrors('user')}" th:errors="*{user}" class="text-danger"></td>
+            </div>
+            <div class="col-md-3">
+                <label for="inputDivision" class="form-label">Division</label>
+                <select id="inputDivision" class="form-select" th:field="*{division.id}">
                     <option th:each="divisionObj:${divisionList}"
                             th:text="${divisionObj.name}"
                             th:value="${divisionObj.id}">
                     </option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Position</td>
-            <td>
-                <select th:field="*{position.id}">
-                    <option th:each="positionObj:${positionList}"
-                            th:text="${positionObj.name}"
-                            th:value="${positionObj.id}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Degree</td>
-            <td>
-                <select th:field="*{degree.id}">
+            </div>
+            <div class="col-md-3">
+                <label for="inputDegree" class="form-label">Degree</label>
+                <select id="inputDegree" class="form-select" th:field="*{degree.id}">
                     <option th:each="degreeObj:${degreeList}"
                             th:text="${degreeObj.name}"
                             th:value="${degreeObj.id}">
                     </option>
                 </select>
-            </td>
-        </tr>
-    </table>
-    <input type="submit" value="Create">
-</form>
+            </div>
+            <div class="col-md-3">
+                <label for="inputPosition" class="form-label">Position</label>
+                <select id="inputPosition" class="form-select" th:field="*{position.id}">
+                    <option th:each="positionObj:${positionList}"
+                            th:text="${positionObj.name}"
+                            th:value="${positionObj.id}">
+                    </option>
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success text-white">Create</button>
+            </div>
+            <div class="col-12"></div>
+        </form>
+        </div>
+</div>
+</div>
+<div th:replace="~{/common/footer::footer}"></div>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

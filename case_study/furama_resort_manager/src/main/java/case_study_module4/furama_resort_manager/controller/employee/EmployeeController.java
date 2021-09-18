@@ -62,7 +62,7 @@ public class EmployeeController {
         model.addAttribute("divisionList",divisionList);
         model.addAttribute("degreeList",degreeList);
         if (bindingResult.hasFieldErrors()){
-            return new ModelAndView("/employee/create");
+            return new ModelAndView("employee/create");
         }else {
             Employee newEmployee = new Employee();
             BeanUtils.copyProperties(newEmployeeDto,newEmployee);
@@ -91,7 +91,7 @@ public class EmployeeController {
         model.addAttribute("degreeList",degreeList);
         model.addAttribute("newEmployeeDto",newEmployeeDto);
         return ("employee/edit");
-//        return new ModelAndView("blog/edit","editBlog",blogService.findById(id));
+
     }
 
     @PostMapping(value = "/edit")
@@ -104,7 +104,7 @@ public class EmployeeController {
         model.addAttribute("divisionList",divisionList);
         model.addAttribute("degreeList",degreeList);
         if (bindingResult.hasFieldErrors()){
-            return new ModelAndView("/employee/edit");
+            return new ModelAndView("employee/edit");
         }else {
             Employee editEmployee = new Employee();
             BeanUtils.copyProperties(newEmployeeDto,editEmployee);

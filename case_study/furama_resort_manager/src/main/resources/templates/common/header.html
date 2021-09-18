@@ -7,20 +7,18 @@
 <!--    <link rel="stylesheet" href="/css/bootstrap.min.css">-->
 </head>
 <body>
-<div class="container-fluid" th:fragment="header">
+<div class="container-fluid" th:fragment="header" style="background-color: #20c997">
     <div class="row">
-        <div class="col-lg-10">
-            <img src="/image_libary/logo.jpg" width="80px" height="80px" alt="logo" >
+        <div class="col-lg-10 my-0">
+            <img src="/image_libary/logo-furama.png" width="80px" height="80px" alt="logo" >
         </div>
         <div class="col-lg-2" style="text-align: center" sec:authorize="isAnonymous()">
             <form action="/login" method="post">
-                <input class="btn btn-primary" type="submit" value="Login">
+                <input class="btn btn-success my-1" type="submit" value="Login" style="border-color: #664d03">
             </form>
         </div>
-        <div class="col-lg-2  " style="text-align: center" sec:authorize="isAuthenticated()">
-            <form action="/login" method="post">
-                <h5> Hello, <span sec:authentication="principal.username"></span> <a th:href="@{/logout}">(Log out)</a> </h5>
-            </form>
+        <div class="col-lg-2 text-white " style="text-align: center"  sec:authorize="isAuthenticated()">
+                <p> Hello, <span sec:authentication="principal.username"></span> <a th:href="@{/logout}" class="link-success">(Log out)</a></p>
         </div>
     </div>
 </div>
