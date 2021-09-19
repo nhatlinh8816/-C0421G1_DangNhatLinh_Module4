@@ -36,7 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/").permitAll()
         .and()
                 .authorizeRequests().antMatchers("/").permitAll()
-                .antMatchers("/employee/create").hasAnyRole("MANAGER","DIRECTOR")
+                .antMatchers("/employee/create","/employee/edit/**","/employee/delete/**").hasAnyRole("MANAGER","DIRECTOR")
+                .antMatchers("/employee/list/**").hasAnyRole("MANAGER","DIRECTOR","EMPLOYEE")
                 .anyRequest().permitAll() ;
         http.authorizeRequests().and().rememberMe().tokenRepository(this.persistentTokenRepository())
                 .tokenValiditySeconds(30);

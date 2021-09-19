@@ -56,7 +56,7 @@
                     <input type="text" th:field="*{user.account}" class="form-control" id="user">
                     <td th:if="${#fields.hasErrors('user')}" th:errors="*{user}" class="text-danger"></td>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="inputDivision" class="form-label">Division</label>
                     <select id="inputDivision" class="form-select" th:field="*{division.id}">
                         <option th:each="divisionObj:${divisionList}"
@@ -65,7 +65,7 @@
                         </option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="inputDegree" class="form-label">Degree</label>
                     <select id="inputDegree" class="form-select" th:field="*{degree.id}">
                         <option th:each="degreeObj:${degreeList}"
@@ -74,7 +74,7 @@
                         </option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="inputPosition" class="form-label">Position</label>
                     <select id="inputPosition" class="form-select" th:field="*{position.id}">
                         <option th:each="positionObj:${positionList}"

@@ -113,6 +113,11 @@ public class EmployeeController {
         }
     }
 
+    @RequestMapping(value = "/detail/{id}")
+    public ModelAndView showDetailForm(@PathVariable int id){
+        return new ModelAndView("employee/detail","detailEmployee",employeeService.findById(id));
+    }
+
     @PostMapping(value = "/searchByName")
     public ModelAndView showListByDes(@RequestParam("employeeName") String name, @PageableDefault(value = 2)Pageable pageable){
         return new ModelAndView("employee/listBySearchName","employeeList",employeeService.findByNameContains(name, pageable));

@@ -29,7 +29,7 @@
                     <th scope="col">Division</th>
                     <th scope="col">Position</th>
                     <th scope="col">Degree</th>
-                    <th scope="col" colspan="3">Action</th>
+                    <th scope="col" colspan="3" class="text-center">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,13 +46,17 @@
                     <td th:text="${employeeObj.position.name}"></td>
                     <td th:text="${employeeObj.degree.name}"></td>
                     <td>
-                        <a th:href="@{/employee/edit/__${employeeObj.id}__}" >Edit</a>
+                        <a th:href="@{/employee/edit/__${employeeObj.id}__}" class="btn btn-success" role="button">Edit</a>
                     </td>
                     <td>
-                        <a th:href="@{/employee/delete/__${employeeObj.id}__}" >Delete</a>
+<!--                        <a th:href="@{/employee/delete/__${employeeObj.id}__}"  class="btn btn-success" role="button" >Delete</a>-->
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop" onclick="deleteEmployee('+${employeeObj.id}+','+${employeeObj.name}+')">
+                            Delete
+                        </button>
                     </td>
                     <td>
-                        <a th:href="@{/employee/detail/__${employeeObj.id}__}" >Detail</a>
+                        <a th:href="@{/employee/detail/__${employeeObj.id}__}"  class="btn btn-success" role="button" >Detail</a>
                     </td>
                 </tr>
                 </tbody>
@@ -72,5 +76,40 @@
 </div>
 <div th:replace="~{/common/footer::footer}"></div>
 <script src="/js/bootstrap.min.js"></script>
+<%--    modal--%>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Do you want delete <input id="name" style="border: none;outline: none ; color: red">
+            </div>
+            <form action="/employee/delete/" method="post">
+                <input type="hidden" name="actionClient" value="delete">
+                <input type="hidden" name="id" value="" id="id">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous">
+</script>
+<script>
+    function deleteEmployee(id,name) {
+        document.getElementById("id").value = id;
+        document.getElementById("name").value = name;
+    }
+</script>
 </body>
 </html>
